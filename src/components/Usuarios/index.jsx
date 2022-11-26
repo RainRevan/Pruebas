@@ -1,57 +1,52 @@
-import Table from "../Table/Table";
-import { useState } from "react";
-import { getRequest } from "../../js/getData";
-import MainPage from "../Table/MainPage";
-import CreateButton from "../Table/CreateBotton";
-import SearchBar from "../Table/SearchBar";
-import BodyIndex from "./bodyIndex";
-import { useEffect } from "react";
-import { loadData } from "../../js/getData";
-import backendConfig from "../../config";
-let objCss = {
-    border: "6px solid red",
-};
+function LoginView(props) {
+    return (
+        <div className="w-75 mx-auto">
+            <div
+                class="text-center"
+                data-new-gr-c-s-check-loaded="14.1085.0"
+                data-gr-ext-installed=""
+            >
+                <main class="form-signin w-100 m-auto">
+                    <form>
+                        <img
+                            class="mb-4"
+                            src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg"
+                            alt=""
+                            width="72"
+                            height="57"
+                        />
+                        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-function UsuariosIndex(props) {
-    let data = loadData();
-    const [datosTabla, setDatosTabla] = useState(data);
-    const [state, setState] = useState("loading");
-    const [error, setError] = useState("");
-    useEffect(function () {
-        let promiseData = getRequest(
-            backendConfig.FULL_API_PATH + "usuarios/all",
-            {},
-            "get",
-            {}
-        );
-        promiseData
-            .then(function (response) {
-                console.log(response);
-                setState("loaded");
-                setDatosTabla(response.data);
-            })
-            .catch(function (err) {
-                setState("error");
-                setError(err);
-                console.log(err);
-            });
-    }, []);
-    if (state === "error") {
-        return (
-            <div className="mx-3 d-flex">
-                <h3>{error.toString()}</h3>
+                        <div class="form-floating my-3">
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="floatingInput"
+                                placeholder="name@example.com"
+                            />
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating my-3">
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="floatingPassword"
+                                placeholder="Password"
+                            />
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <button
+                            class="w-100 btn btn-lg btn-primary my-3"
+                            type="button"
+                        >
+                            Sign in
+                        </button>
+                        <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+                    </form>
+                </main>
             </div>
-        );
-    }
-    if (state === "loading") {
-        return (
-            <div className="mx-3 d-flex">
-                <h3>Loading...</h3>
-            </div>
-        );
-    }
-    return <BodyIndex datosTabla={datosTabla}></BodyIndex>;
-    //procesar datos
+        </div>
+    );
 }
 
-export default UsuariosIndex;
+export default LoginView;

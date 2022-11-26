@@ -16,7 +16,7 @@ function BodyIndex(props) {
             </p>
             <MainPage
                 data={props.datosTabla}
-                path={"/usuarios"}
+                path={"/Usuarios"}
                 name={"Tabla de Usuarios"}
                 columns={["_id", "firstName", "email", "username", "password"]}
                 columnsAlias={[
@@ -39,5 +39,4 @@ function BodyIndex(props) {
         </div>
     );
 }
-
 export default BodyIndex;
