@@ -1,25 +1,24 @@
-// Cargar las dependencia
-let bodyParser = require("body-parser");
-let express = require("express");
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./css/index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { estadoPrincipal, setEstadoPrincipal } from "./js/global";
 
-// Cargar la configuracion de la applicacion
-let appConfig = require("./config");
-
-// Cargamos los enrutadores
-let usuarioRouter = require("./routes/usuariosRouter");
-
-// Inicializar nuestra app web y la conexion a base de datos
-let dbConnector = require("./db/dbConector");
-let app = express();
-
-// Registramos los enrutadores
-app.use("/usuarios", usuarioRouter);
-
-// Levantamos el servidor
-app.listen(appConfig.PORT, function () {
-    console.log(
-        "La aplicacion esta escuchando en el puerto: " + appConfig.PORT
-    );
+setEstadoPrincipal({
+    name: "N/A",
+    auhtenticated: false,
 });
 
-console.log("Hello world!!!!!");
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
